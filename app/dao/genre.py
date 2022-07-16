@@ -1,5 +1,5 @@
 from app.dao.models.genre import Genre
-from config import PAGE_LIMIT
+from constants import PAGE_LIMIT
 
 
 class GenreDAO:

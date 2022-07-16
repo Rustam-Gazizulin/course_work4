@@ -9,7 +9,7 @@ director_ns = Namespace('directors')
 @director_ns.route('/')
 class DirectorsView(Resource):
     def get(self):
-        page_num = request.args.get('page')
+        page_num = request.args.get('page', None)
         directors = director_service.get_all(page_num)
         return directors_schema.dump(directors), 200
 

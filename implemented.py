@@ -11,6 +11,12 @@ from app.dao.movie import MovieDAO
 from app.services.movie import MovieService
 from app.dao.models.movie import MovieSchema
 
+from app.services.auth import AuthService
+from app.dao.user import UserDAO
+from app.dao.models.user import UserSchema
+
+
+
 director_dao = DirectorDAO(db.session)
 director_service = DirectorService(dao=director_dao)
 directors_schema = DirectorSchema(many=True)
@@ -25,3 +31,9 @@ movie_dao = MovieDAO(db.session)
 movie_service = MovieService(dao=movie_dao)
 movies_schema = MovieSchema(many=True)
 movie_schema = MovieSchema()
+
+user_dao = UserDAO(db.session)
+users_schema = UserSchema(many=True)
+user_schema = UserSchema()
+
+auth_service = AuthService(dao=user_dao)

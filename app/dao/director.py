@@ -1,5 +1,5 @@
 from app.dao.models.director import Director
-from config import PAGE_LIMIT
+from constants import PAGE_LIMIT
 
 
 class DirectorDAO:
