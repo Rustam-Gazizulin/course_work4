@@ -21,21 +21,13 @@ class UserDAO:
 
     def get_by_email(self, email):
         try:
-            self.session.query(User).filter(User.email == email.strip()).one()
-            return True
+            user = self.session.query(User).filter(User.email == email.strip()).one()
+            return user
         except Exception:
             return False
 
     def create(self, user_data):
-        # user = User(
-        #     email=data_user['email'],
-        #     password=data_user['password'],
-        #     name=data_user['name'],
-        #     surname=data_user['surname'],
-        #     favorite_genre=data_user['favorite_genre']
-        # )
         user = User(**user_data)
-        print(user)
         self.session.add(user)
         self.session.commit()
         return user

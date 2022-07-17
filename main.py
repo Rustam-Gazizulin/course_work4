@@ -15,6 +15,7 @@ def create_app(config: Config):
     register_extensions(application)
     return application
 
+
 def register_extensions(app):
     api = Api(app)
     api.add_namespace(director_ns)

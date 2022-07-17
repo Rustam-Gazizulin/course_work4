@@ -25,7 +25,17 @@ class AuthRegisterView(Resource):
 class AuthLoginView(Resource):
     def post(self):
         user_data = request.json
+        email = user_data.get('email')
+        password = user_data.get('password')
+        if None in [email, password]:
+            return "Не введен логин или пароль", 400
+
+        result = auth_service.genereate_token(email, password)
+        return result
+        # return auth_service.login_user(user_data)
 
 
     def put(self):
-        pass
+        data = request.json
+        token = data.get('refresh_token')
+        return auth_service.approve_refresh_token(token)
