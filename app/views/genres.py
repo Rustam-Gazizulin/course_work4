@@ -14,7 +14,7 @@ class GenresView(Resource):
         return genres_schema.dump(genres), 200
 
 
-@genre_ns.route('/<int:did>')
+@genre_ns.route('/<int:did>/')
 class GenreView(Resource):
     def get(self, did):
         genre = genre_service.get_one(did)

@@ -6,7 +6,7 @@ from implemented import auth_service
 auth_ns = Namespace('auth')
 
 
-@auth_ns.route('/register')
+@auth_ns.route('/register/')
 class AuthRegisterView(Resource):
     def post(self):
         user_data = request.json
@@ -21,7 +21,7 @@ class AuthRegisterView(Resource):
         return "", 201, {"location": f"/users/{user.id}"}
 
 
-@auth_ns.route('/login')
+@auth_ns.route('/login/')
 class AuthLoginView(Resource):
     def post(self):
         user_data = request.json
@@ -32,7 +32,6 @@ class AuthLoginView(Resource):
 
         result = auth_service.genereate_token(email, password)
         return result
-        # return auth_service.login_user(user_data)
 
 
     def put(self):

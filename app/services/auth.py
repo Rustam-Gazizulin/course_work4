@@ -30,17 +30,6 @@ class AuthService:
         user_data['password'] = self.get_hash(password)
         return self.dao.create(user_data)
 
-    # def login_user(self, user_data):
-    #     email = user_data.get('email')
-    #     password = user_data.get('password')
-    #     user = self.verify_user(email)
-    #     print(user)
-    #     if user:
-    #         if self.compare_passwords(user.password, password):
-    #             return self.genereate_token(user_data)
-    #         else:
-    #             abort(400)
-
     def verify_user(self, email):
         return self.dao.get_by_email(email)
 
@@ -65,13 +54,15 @@ class AuthService:
     def genereate_token(self, email, password, is_refresh=False):
         user = self.dao.get_by_email(email)
         if not user:
-            return "user not found"
+            abort(400)
+            # return "user not found"
 
         if not is_refresh:
             if not self.compare_passwords(user.password, password):
                 abort(400)
 
         data = {
+            "id": user.id,
             "email": email
         }
         min30 = datetime.datetime.now() + datetime.timedelta(minutes=30)

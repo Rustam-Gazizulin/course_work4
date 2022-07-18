@@ -18,6 +18,3 @@ class DirectorDAO:
 
     def get_one(self, did):
         return self.session.query(Director).get(did)
-
-
-

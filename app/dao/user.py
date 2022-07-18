@@ -16,8 +16,8 @@ class UserDAO:
 
         return self.session.query(User).order_by(User.id).offset(offset_rec).limit(page_limit).all()
 
-    def get_one(self, did):
-        return self.session.query(User).get(did)
+    def get_one(self, uid):
+        return self.session.query(User).get(uid)
 
     def get_by_email(self, email):
         try:
@@ -31,3 +31,23 @@ class UserDAO:
         self.session.add(user)
         self.session.commit()
         return user
+
+    def patch(self, uid, user_data):
+        user = self.get_one(uid)
+        if not user:
+            return False
+        if user_data.get('name'):
+            user.name = user_data.get('name')
+        if user_data.get('surname'):
+            user.surname = user_data.get('surname')
+        if user_data.get('favourite_genre'):
+            user.favourite_genre = user_data.get('favourite_genre')
+
+        self.session.add(user)
+        self.session.commit()
+        return user
+
+    def put(self, user):
+        self.session.add(user)
+        self.session.commit()
+

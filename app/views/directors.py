@@ -19,3 +19,19 @@ class DirectorView(Resource):
     def get(self, did):
         director = director_service.get_one(did)
         return director_schema.dump(director), 200
+
+# @director_ns.route('/<int:did>/')
+# class DirectorView(Resource):
+#     def get(self, did):
+#         # director = director_service.get_one(did)
+#         # return director_schema.dump(director), 200
+#         return {
+#             "id": 1,
+#             "title": "кино",
+#             "description": "хорошее кино",
+#             "trailer": "трейлер",
+#             "year": 1988,
+#             "rating": 8.7,
+#             "genre_id": 2,
+#             "director_id": 1
+#         }

@@ -15,6 +15,8 @@ from app.services.auth import AuthService
 from app.dao.user import UserDAO
 from app.dao.models.user import UserSchema
 
+from app.services.user import UserService
+
 
 
 director_dao = DirectorDAO(db.session)
@@ -33,6 +35,7 @@ movies_schema = MovieSchema(many=True)
 movie_schema = MovieSchema()
 
 user_dao = UserDAO(db.session)
+user_service = UserService(dao=user_dao)
 users_schema = UserSchema(many=True)
 user_schema = UserSchema()
 
