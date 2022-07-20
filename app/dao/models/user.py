@@ -1,5 +1,7 @@
 from setup_db import db
+from sqlalchemy.orm import relationship
 from marshmallow import Schema, fields
+from app.dao.models.user_movie_rel import user_movie_table
 
 
 class User(db.Model):
@@ -10,6 +12,8 @@ class User(db.Model):
     name = db.Column(db.String)
     surname = db.Column(db.String)
     favourite_genre = db.Column(db.Integer, db.ForeignKey('genre.id'))
+    movies = relationship('Movie', secondary=user_movie_table, back_populates='users')
+
 
 
 class UserSchema(Schema):

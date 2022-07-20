@@ -1,5 +1,7 @@
 from setup_db import db
+from sqlalchemy.orm import relationship
 from marshmallow import Schema, fields
+from app.dao.models.user_movie_rel import user_movie_table
 
 
 class Movie(db.Model):
@@ -12,6 +14,7 @@ class Movie(db.Model):
     rating = db.Column(db.Float, nullable=False)
     genre_id = db.Column(db.Integer, db.ForeignKey('genre.id'), nullable=False)
     director_id = db.Column(db.Integer, db.ForeignKey('director.id'), nullable=False)
+    users = relationship('User', secondary=user_movie_table, back_populates='movies')
 
 
 class MovieSchema(Schema):
@@ -20,6 +23,6 @@ class MovieSchema(Schema):
     description = fields.Str()
     trailer = fields.Str()
     year = fields.Int()
-    raiting = fields.Float()
+    rating = fields.Float()
     genre_id = fields.Int()
     director_id = fields.Int()

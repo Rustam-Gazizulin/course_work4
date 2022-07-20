@@ -5,7 +5,7 @@ from app.views.directors import director_ns
 from app.views.genres import genre_ns
 from app.views.movies import movie_ns
 from app.views.auth import auth_ns
-from app.views.user import user_ns
+from app.views.user import user_ns, favourite_ns
 from setup_db import db
 from flask_cors import CORS
 
@@ -28,6 +28,7 @@ def register_extensions(app):
     api.add_namespace(movie_ns)
     api.add_namespace(auth_ns)
     api.add_namespace(user_ns)
+    api.add_namespace(favourite_ns)
     db.init_app(app)
 
 

@@ -4,7 +4,9 @@ from implemented import user_service, user_schema
 from flask import request, abort
 from constants import JWT_SECRET, JWT_ALGORITHM
 
+
 user_ns = Namespace('user')
+favourite_ns = Namespace('favourite')
 
 
 def auth_required(func):
@@ -14,12 +16,10 @@ def auth_required(func):
         data = request.headers['Authorization']
         token = data.split('Bearer ')[-1]
         try:
-            # jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM])
-            uid = jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM])['id']
+            jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM])
         except Exception:
             abort(401)
         return func(*args, **kwargs)
-        # return func(uid, **kwargs)
 
     return wrapper
 
@@ -28,8 +28,6 @@ def auth_required(func):
 class UserView(Resource):
     @auth_required
     def get(self):
-        # uid = user_service.get_id_by_token(request.headers)
-        # user = user_service.get_one(uid)
         uid = user_service.get_id_by_token(request.headers)
         user = user_service.get_one(uid)
         if user:
@@ -57,3 +55,10 @@ class UserUpdateView(Resource):
         user_service.put(uid, user_data)
 
 
+@favourite_ns.route('/movies/<int:movie_id>')
+class FavouriteMovies(Resource):
+    def post(self, movie_id):
+        pass
+
+    def delete(self, movie_id):
+        pass

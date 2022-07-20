@@ -10,8 +10,39 @@ movie_ns = Namespace('movies')
 class MoviesView(Resource):
     def get(self):
         page_num = request.args.get('page', None)
-        movies = movie_service.get_all(page_num)
+        director = request.args.get('director', None)
+        genre = request.args.get('genre', None)
+        # movies = movie_service.get_all(page_num)
+        movies = movie_service.get_all(page_num, director, genre)
         return movies_schema.dump(movies), 200
+
+        # return {
+        #            "id": 1,
+        #            "title": "Йеллоустоун",
+        #            "description": "Владелец ранчо пытается сохранить землю своих предков. Кевин Костнер в неовестерне от автора «Ветреной реки»",
+        #            "trailer": "https://www.youtube.com/watch?v=UKei_d0cbP4",
+        #            "year": 2018,
+        #            "rating": 8.6,
+        #            "genre": {
+        #                "id": 17,
+        #                "name": "Вестерн"
+        #            },
+        #            "director": {
+        #                "id": 1,
+        #                "name": "Тейлор Шеридан"
+        #            }
+        #        }, 200
+        # return {
+        #            "id": 1,
+        #            "title": "Йеллоустоун",
+        #            "description": "Владелец ранчо пытается сохранить землю своих предков. Кевин Костнер в неовестерне от автора «Ветреной реки»",
+        #            "trailer": "https://www.youtube.com/watch?v=UKei_d0cbP4",
+        #            "year": 2018,
+        #            "rating": 8.6,
+        #            "genre_id": 17,
+        #            "director_id": 1
+        #        }, 200
+
 
 
 @movie_ns.route('/<int:did>/')
