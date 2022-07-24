@@ -1,5 +1,6 @@
 from flask import request
-from flask_restx import Resource, Namespace
+from flask_restx import Resource, Namespace, api
+
 from implemented import genre_service, genres_schema, genre_schema
 
 
@@ -14,8 +15,8 @@ class GenresView(Resource):
         return genres_schema.dump(genres), 200
 
 
-@genre_ns.route('/<int:did>/')
+@genre_ns.route('/<int:gid>/')
 class GenreView(Resource):
-    def get(self, did):
-        genre = genre_service.get_one(did)
+    def get(self, gid):
+        genre = genre_service.get_one(gid)
         return genre_schema.dump(genre), 200

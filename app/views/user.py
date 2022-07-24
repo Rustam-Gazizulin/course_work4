@@ -6,7 +6,6 @@ from constants import JWT_SECRET, JWT_ALGORITHM
 
 
 user_ns = Namespace('user')
-favourite_ns = Namespace('favourite')
 
 
 def auth_required(func):
@@ -55,10 +54,3 @@ class UserUpdateView(Resource):
         user_service.put(uid, user_data)
 
 
-@favourite_ns.route('/movies/<int:movie_id>')
-class FavouriteMovies(Resource):
-    def post(self, movie_id):
-        pass
-
-    def delete(self, movie_id):
-        pass

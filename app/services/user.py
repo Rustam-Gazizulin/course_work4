@@ -8,7 +8,7 @@ from flask import abort
 
 
 class UserService:
-    def __init__(self, dao:UserDAO):
+    def __init__(self, dao: UserDAO):
         self.dao = dao
 
     def get_one(self, uid):

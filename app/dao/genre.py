@@ -16,8 +16,8 @@ class GenreDAO:
 
         return self.session.query(Genre).order_by(Genre.id).offset(offset_rec).limit(page_limit).all()
 
-    def get_one(self, did):
-        return self.session.query(Genre).get(did)
+    def get_one(self, gid):
+        return self.session.query(Genre).get(gid)
 
 
 

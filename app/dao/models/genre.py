@@ -1,4 +1,5 @@
 from marshmallow import Schema, fields
+from sqlalchemy.orm import relationship
 from setup_db import db
 
 
@@ -12,3 +13,4 @@ class Genre(db.Model):
 class GenreSchema(Schema):
     id = fields.Int()
     name = fields.Str()
+    movies = relationship('Movie')

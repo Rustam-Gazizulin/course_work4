@@ -8,5 +8,5 @@ class GenreService:
     def get_all(self, page_num):
         return self.dao.get_all(page_num)
 
-    def get_one(self, did):
-        return self.dao.get_one(did)
+    def get_one(self, gid):
+        return self.dao.get_one(gid)

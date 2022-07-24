@@ -1,4 +1,5 @@
 from setup_db import db
+
 from app.dao.director import DirectorDAO
 from app.services.director import DirectorService
 from app.dao.models.director import DirectorSchema
@@ -11,14 +12,14 @@ from app.dao.movie import MovieDAO
 from app.services.movie import MovieService
 from app.dao.models.movie import MovieSchema
 
-from app.services.auth import AuthService
 from app.dao.user import UserDAO
 from app.dao.models.user import UserSchema
-
-
 from app.services.user import UserService
 
+from app.services.auth import AuthService
 
+from app.services.favourite_movie import FavouriteService
+from app.dao.models.user_movie_rel import FavouriteSchema
 
 director_dao = DirectorDAO(db.session)
 director_service = DirectorService(dao=director_dao)
@@ -41,3 +42,6 @@ users_schema = UserSchema(many=True)
 user_schema = UserSchema()
 
 auth_service = AuthService(dao=user_dao)
+
+favourite_service = FavouriteService()
+favourite_schema = FavouriteSchema(many=True)

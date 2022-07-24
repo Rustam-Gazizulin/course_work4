@@ -4,8 +4,9 @@ from config import Config
 from app.views.directors import director_ns
 from app.views.genres import genre_ns
 from app.views.movies import movie_ns
+from app.views.favourite_movie import favourite_ns
 from app.views.auth import auth_ns
-from app.views.user import user_ns, favourite_ns
+from app.views.user import user_ns
 from setup_db import db
 from flask_cors import CORS
 

@@ -50,4 +50,3 @@ class UserDAO:
     def put(self, user):
         self.session.add(user)
         self.session.commit()
-

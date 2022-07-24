@@ -78,12 +78,12 @@ class AuthService:
             'refresh_token': refresh_token
         }
 
-    def check_token(self, token):
-        try:
-            jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM])
-            return True
-        except Exception:
-            return False
+    # def check_token(self, token):
+    #     try:
+    #         jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM])
+    #         return True
+    #     except Exception:
+    #         return False
 
     def approve_refresh_token(self, token):
         data = jwt.decode(token, JWT_SECRET, algorithms=[JWT_ALGORITHM])
